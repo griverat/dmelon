@@ -3,6 +3,7 @@ channels:
     - conda-forge
 dependencies:
     - conda-build
+    - black
     - anaconda-client
     - pip
     - bump2version
