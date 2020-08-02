@@ -5,7 +5,7 @@ dependencies:
     - conda-build
     - anaconda-client
     - pip
-    - bumpversion
+    - bump2version
     - wheel
     - watchdog
     - flake8
