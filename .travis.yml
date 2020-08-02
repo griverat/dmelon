@@ -13,7 +13,7 @@ before_install:
 - conda config --set auto_update_conda no
 install:
 - conda env create -f dmelon-dev.yml
-- conda activate dmelon-dev
+- source activate dmelon-dev
 - pip install -e .
 script:
 - pytest -v --color=yes --cov=dmelon dmelon/tests
