@@ -1,13 +1,14 @@
+name: dmelon-dev
 channels:
     - conda-forge
-    - defaults
 dependencies:
+    - conda-build
+    - anaconda-client
     - pip
     - bumpversion
     - wheel
     - watchdog
     - flake8
-    - tox
     - coverage
     - Sphinx
     - twine

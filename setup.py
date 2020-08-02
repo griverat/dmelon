@@ -17,10 +17,6 @@ setup_requirements = ['pytest-runner']
 
 test_requirements = ['pytest']
 
-with open('requirements_dev.txt', 'r') as f:
-    dev_requirements = [l for l in f.read().split('\n') if l.strip()]
-dev_requirements += requirements
-
 setup(
     author="Gerardo A. Rivera Tello",
     author_email='gerardo_art@me.com',
@@ -36,7 +32,6 @@ setup(
     ],
     description="Personal package containing some useful stuff I tend to repeat.",
     install_requires=requirements,
-    extras_require={'dev': dev_requirements},
     license="MIT license",
     long_description=readme + '\n\n' + history,
     include_package_data=True,

@@ -1,18 +1,29 @@
-# Config file for automatic testing at travis-ci.org
-
 language: python
 python:
-  - 3.8
-  - 3.7
-  - 3.6
-
-# Command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
-install: pip install -U tox-travis codecov
-
-# Command to run tests, e.g. python setup.py test
-script: tox
-
-# Codecov after success
-after_success: codecov
-
-
+- 3.8
+- 3.7
+- 3.6
+before_install:
+- wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+- bash miniconda.sh -b -p $HOME/miniconda
+- export PATH="$HOME/miniconda/bin:$PATH"
+- hash -r
+- conda config --set always_yes yes
+- conda update -q conda
+- conda config --set auto_update_conda no
+install:
+- conda env create -f dmelon-dev.yml
+- conda activate dmelon-dev
+- pip install -e .
+script:
+- pytest -v --color=yes --cov=dmelon dmelon/tests
+after_success:
+- conda install -c conda-forge codecov
+- codecov
+deploy:
+  provider: pypi
+  username: "__token__"
+  password:
+    secure: ECu9wHWmqKR4leADBkO7BU0MrxtHPBQczKKZH3gRCHKxC02MZzqiL5BgFTkWX21gzMkzHjc2nmRHelFKQOA6PXOOOViIlEdjRRzjSZGEsOgEl+yhZnC/YPRA2rB691aiN2DSuncF/m608mDuNzw74qIp5yhhSEllRvukBy49Sb4JkldCk8ANWn0N5t49NHgFGDVdK/03XiZ4y/XPNO+mhWwevcnBJl+h6Lmf58g4YtlaTEJxg8qcQSyhdxMlll8OhJMxwPQpU83WthGoB5jr+AhIPOfZ8v8apZAjnokwLPHA2pxSViVnRRBalCowDQexNeGzxGdhtrni3X9wz9oFr3OwPrsRxfO47owFhPuD2RukxqKVxApFTIfv3v9sxi8+k+BM99UlFb1nNj5VcHdunrGtqQsoTrXD4gSqD/R/6JciYncoKqPFy7kXuZLAaOMRlB2NgQVd41u+weg8GiVag17xL7koFspE/dH1ZayC/zgZNmnKsryGc3UqxuxC2uGlNnGqf2Zw5mzqXtEIhFWAlcs1vHa4xSx2JNvIAMGiHgh4qEaKMkN+s2ACENGQnOj0PsohlYBvRw9d8oCUx8ZFc2gvN097+kdh0AkDn5xBfcVVsXJMBAhpFKvFKbFETTZxNUMJOaJ1/Fwv1GgMbWwROxnDAgA6PIGjWTOUCx86AGY=
+  on:
+    tags: true
