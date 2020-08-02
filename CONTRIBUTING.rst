@@ -63,11 +63,12 @@ Ready to contribute? Here's how to set up `dmelon` for local development.
 2. Clone your fork locally::
 
     $ git clone git@github.com:your_name_here/dmelon.git
-
-3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development::
-
-    $ mkvirtualenv dmelon
     $ cd dmelon/
+
+3. Install the development environment `dmelon-dev`. Assuming you have conda installed, this is how you set up your fork for local development::
+
+    $ conda env create -f dmelon-dev.yml
+    $ conda activate dmelon-dev
     $ python setup.py develop
 
 4. Create a branch for local development::
@@ -81,9 +82,8 @@ Ready to contribute? Here's how to set up `dmelon` for local development.
 
     $ flake8 dmelon tests
     $ python setup.py test or py.test
-    $ tox
 
-   To get flake8 and tox, just pip install them into your virtualenv.
+   Flake8 should be available in the installed `dmelon-dev` conda environment.
 
 6. Commit your changes and push your branch to GitHub::
 
@@ -120,7 +120,7 @@ A reminder for the maintainers on how to deploy.
 Make sure all your changes are committed (including an entry in HISTORY.rst).
 Then run::
 
-$ bumpversion patch # possible: major / minor / patch
+$ bump2version patch # possible: major / minor / patch
 $ git push
 $ git push --tags
 
