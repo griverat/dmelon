@@ -161,13 +161,16 @@ class Projection:
             dim="lat",
         )
         self.b.name = "projection_vector"
+        return self.b
 
     def wave_coefficient_vector(self):
         self.r = xr.dot(self.A_inv, self.b).rename({"_hpoly": "hpoly"})
         self.r.name = "wave_coefficient_vector"
+        return self.r
 
     def decomposed_sea_level(self):
         self.h = (self.r * self.R.R_h.transpose("hpoly", "lat")).drop(
             ["scaled_lat"]
         ).transpose("hpoly", "lat", "lon") * ((2.5 ** 2) / 9.81)
         self.h.name = "wave_amp"
+        return self.h
