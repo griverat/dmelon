@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding:utf-8 -*-
-"""
-Created on Mon Aug 3 04:10:41 2020
-"""
 
 import numpy as np
 import xarray as xr

@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding:utf-8 -*-
-"""
-Created on Sun Aug 2 08:40:23 2020
-"""
 
 import math
 
