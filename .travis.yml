@@ -12,7 +12,7 @@ before_install:
 - conda update -q conda
 - conda config --set auto_update_conda no
 install:
-- conda env create -f dmelon-dev.yml
+- conda env create -f requirements/environment.yml
 - source activate dmelon-dev
 - pip install -e .
 script:
