@@ -1,0 +1,12 @@
+name: dmelon-docs
+channels:
+  - conda-forge
+dependencies:
+    - numpy
+    - scipy
+    - xarray
+    - dask
+    - netCDF4
+    - bottleneck
+    - coverage
+    - Sphinx
