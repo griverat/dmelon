@@ -20,6 +20,7 @@
 #
 import os
 import sys
+
 sys.path.insert(0, os.path.abspath('..'))
 
 import dmelon
@@ -32,7 +33,13 @@ import dmelon
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.viewcode']
+extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.viewcode',
+    'sphinx.ext.napoleon',
+    'sphinx.ext.autosummary',
+    'sphinx.ext.extlinks',
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -110,15 +117,12 @@ latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
     #
     # 'papersize': 'letterpaper',
-
     # The font size ('10pt', '11pt' or '12pt').
     #
     # 'pointsize': '10pt',
-
     # Additional stuff for the LaTeX preamble.
     #
     # 'preamble': '',
-
     # Latex figure (float) alignment
     #
     # 'figure_align': 'htbp',
@@ -128,9 +132,13 @@ latex_elements = {
 # (source start file, target name, title, author, documentclass
 # [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'dmelon.tex',
-     u'DMelon Documentation',
-     u'Gerardo A. Rivera Tello', 'manual'),
+    (
+        master_doc,
+        'dmelon.tex',
+        u'DMelon Documentation',
+        u'Gerardo A. Rivera Tello',
+        'manual',
+    ),
 ]
 
 
@@ -138,11 +146,7 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [
-    (master_doc, 'dmelon',
-     u'DMelon Documentation',
-     [author], 1)
-]
+man_pages = [(master_doc, 'dmelon', u'DMelon Documentation', [author], 1)]
 
 
 # -- Options for Texinfo output ----------------------------------------
@@ -151,13 +155,21 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'dmelon',
-     u'DMelon Documentation',
-     author,
-     'dmelon',
-     'One line description of project.',
-     'Miscellaneous'),
+    (
+        master_doc,
+        'dmelon',
+        u'DMelon Documentation',
+        author,
+        'dmelon',
+        'One line description of project.',
+        'Miscellaneous',
+    ),
 ]
+autosummary_generate = True
+autodoc_typehints = "none"
 
+napoleon_use_param = True
+napoleon_use_rtype = True
 
-
+numpydoc_class_members_toctree = True
+numpydoc_show_class_members = False
