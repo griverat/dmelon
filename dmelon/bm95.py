@@ -99,6 +99,14 @@ def hermite_function(n, x):
 def meridional_structures(n, lats):
     """
     Compute the meridional structures using the formulas in BM95
+
+    Parameters
+    ----------
+    n : array_like
+        Meridional modes. This is passed down as the
+        order of the underlying Hermite Functions
+    lats : array_like
+        Array of latitudes
     """
     sclats = _scale_lats(lats)
     R = np.empty((2, n) + sclats.shape)
@@ -126,7 +134,22 @@ def meridional_structures(n, lats):
 
 
 class Projection:
+    """
+    Projection object that computes the projection vector, wave
+    coefficient vector and decomposed sea level as calculated
+    by J.-P. Boulanger & C. Menkes (1995).
+
+    It constructs the meridional structures when instantiated.
+    """
+
     def __init__(self, sea_level):
+        """
+        Parameters
+        ----------
+        sea_level : xarray.DataArray
+            Input sea level anomaly field [time, lat, lon] from
+            which to compute the meridional decomposition.
+        """
         self.sea_level = sea_level
         self.R = meridional_structures(20, self.sea_level.lat)
         self.A = _build_A(self.R.R_h.data)
