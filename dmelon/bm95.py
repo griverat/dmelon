@@ -131,10 +131,9 @@ def meridional_structures(n, lats):
 
 
 class Projection:
-    """
-    Projection object that computes the projection vector, wave
-    coefficient vector and decomposed sea level as calculated
-    by J.-P. Boulanger & C. Menkes (1995).
+    """Projection object that computes the projection vector, wave
+    coefficient vector and decomposed sea level as calculated by
+    J.-P.Boulanger & C.Menkes (1995).
 
     It constructs the meridional structures when instantiated.
     """
@@ -144,8 +143,8 @@ class Projection:
         Parameters
         ----------
         sea_level : xarray.DataArray
-            Input sea level anomaly field [time, lat, lon] from
-            which to compute the meridional decomposition.
+            Input sea level anomaly field [time, lat, lon] from which to
+            compute the meridional decomposition.
         """
         self.sea_level = sea_level
         self.R = meridional_structures(20, self.sea_level.lat)
