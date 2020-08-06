@@ -21,7 +21,7 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath(".."))
 
 import dmelon
 
@@ -34,29 +34,29 @@ import dmelon
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.viewcode',
-    'sphinx.ext.napoleon',
-    'sphinx.ext.autosummary',
-    'sphinx.ext.extlinks',
+    "sphinx.ext.autodoc",
+    "sphinx.ext.viewcode",
+    "sphinx.ext.napoleon",
+    "sphinx.ext.autosummary",
+    "sphinx.ext.extlinks",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ["_templates"]
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 #
 # source_suffix = ['.rst', '.md']
-source_suffix = '.rst'
+source_suffix = ".rst"
 
 # The master toctree document.
-master_doc = 'index'
+master_doc = "index"
 
 # General information about the project.
-project = u'DMelon'
-copyright = u"2020, Gerardo A. Rivera Tello"
-author = u"Gerardo A. Rivera Tello"
+project = "DMelon"
+copyright = "2020, Gerardo A. Rivera Tello"
+author = "Gerardo A. Rivera Tello"
 
 # The version info for the project you're documenting, acts as replacement
 # for |version| and |release|, also used in various other places throughout
@@ -77,10 +77,10 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
+pygments_style = "sphinx"
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
@@ -91,7 +91,7 @@ todo_include_todos = False
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = "alabaster"
 
 # Theme options are theme-specific and customize the look and feel of a
 # theme further.  For a list of options available for each theme, see the
@@ -108,7 +108,7 @@ html_static_path = []
 # -- Options for HTMLHelp output ---------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'dmelondoc'
+htmlhelp_basename = "dmelondoc"
 
 
 # -- Options for LaTeX output ------------------------------------------
@@ -134,10 +134,10 @@ latex_elements = {
 latex_documents = [
     (
         master_doc,
-        'dmelon.tex',
-        u'DMelon Documentation',
-        u'Gerardo A. Rivera Tello',
-        'manual',
+        "dmelon.tex",
+        "DMelon Documentation",
+        "Gerardo A. Rivera Tello",
+        "manual",
     ),
 ]
 
@@ -146,7 +146,7 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [(master_doc, 'dmelon', u'DMelon Documentation', [author], 1)]
+man_pages = [(master_doc, "dmelon", "DMelon Documentation", [author], 1)]
 
 
 # -- Options for Texinfo output ----------------------------------------
@@ -157,12 +157,12 @@ man_pages = [(master_doc, 'dmelon', u'DMelon Documentation', [author], 1)]
 texinfo_documents = [
     (
         master_doc,
-        'dmelon',
-        u'DMelon Documentation',
+        "dmelon",
+        "DMelon Documentation",
         author,
-        'dmelon',
-        'One line description of project.',
-        'Miscellaneous',
+        "dmelon",
+        "One line description of project.",
+        "Miscellaneous",
     ),
 ]
 autosummary_generate = True
