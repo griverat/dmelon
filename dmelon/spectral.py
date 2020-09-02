@@ -31,12 +31,13 @@ def lowpass_cosine_filter_coef(Cf, M):
 
 # %%
 def spectral_window(coef, N):
-    Ff = np.arange(0, 1 + 1e-9, 2 / N)
+    Ff = np.atleast_2d(np.arange(0, 1 + 1e-9, 2 / N)).T
     window = np.zeros((len(Ff), 1))
-    for i in range(len(Ff)):
-        window[i] = coef[0] + 2 * np.sum(
-            coef[1:] * np.cos(np.arange(1, len(coef)) * np.pi * Ff[i])
-        )
+    window = coef[0] + 2 * np.sum(
+        np.atleast_2d(coef[1:])
+        * np.cos(np.atleast_2d(np.arange(1, len(coef))) * np.pi * Ff),
+        axis=-1,
+    )
     return window, Ff
 
 
