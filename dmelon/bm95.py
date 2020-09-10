@@ -138,16 +138,18 @@ class Projection:
     It constructs the meridional structures when instantiated.
     """
 
-    def __init__(self, sea_level):
+    def __init__(self, sea_level, nmodes):
         """
         Parameters
         ----------
         sea_level : xarray.DataArray
             Input sea level anomaly field [time, lat, lon] from which to
             compute the meridional decomposition.
+        nmods : int
+            Number of meridional modes to consider
         """
         self.sea_level = sea_level
-        self.R = meridional_structures(20, self.sea_level.lat)
+        self.R = meridional_structures(nmodes, self.sea_level.lat)
         self.A = _build_A(self.R.R_h.data)
         self.A_inv = _minv(self.A)
 
