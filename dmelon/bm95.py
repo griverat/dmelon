@@ -171,8 +171,8 @@ class Projection:
         return self.r
 
     def decomposed_sea_level(self):
-        self.h = (self.r * self.R.R_h.transpose("hpoly", "lat")).drop(
-            ["scaled_lat"]
-        ).transpose("hpoly", "lat", "lon") * ((2.5 ** 2) / 9.81)
+        self.h = (self.r * self.R.R_h).drop(["scaled_lat"]).transpose(
+            "hpoly", "time", "lat", "lon"
+        ) * ((2.5 ** 2) / 9.81)
         self.h.name = "wave_amp"
         return self.h
