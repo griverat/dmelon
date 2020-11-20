@@ -15,7 +15,11 @@ HQ_BORDER = cfeature.NaturalEarthFeature(
 
 
 def format_latlon(
-    ax, proj, latlon_bnds=(-180, 180, -90, 90), lon_step=20, lat_step=10,
+    ax,
+    proj,
+    latlon_bnds=(-180, 180, -90, 90),
+    lon_step=20,
+    lat_step=10,
 ):
     (ilon, flon, ilat, flat) = latlon_bnds
 
