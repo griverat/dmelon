@@ -119,7 +119,7 @@ def compute_power(xdata, Nx, Nt, xres, tres, window, noverlap, psmooth=True):
     if psmooth is None:
         return power
     elif psmooth is True:
-        smooth_power = dict(nt=20, nx=40)
+        psmooth = dict(nt=20, nx=40)
     elif not isinstance(psmooth, dict):
         print(
             "psmooth needs to be a dictionary with keys 'nt' and 'nx' ",
