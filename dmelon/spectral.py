@@ -2,13 +2,14 @@
 # -*- coding:utf-8 -*-
 
 import math
-import statistics
 
 import numpy as np
 import numpy.fft as fft
 import xarray as xr
 from scipy.ndimage import convolve1d
 from scipy.signal import stft
+
+from . import statistics
 
 
 # %%
