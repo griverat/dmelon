@@ -63,7 +63,7 @@ coverage: ## check code coverage quickly with the default Python
 
 docs: ## generate Sphinx HTML documentation, including API docs
 	$(MAKE) -C docs clean
-	sphinx-apidoc -e -o docs/generated/ dmelon
+	sphinx-apidoc -f -o docs/ dmelon
 	$(MAKE) -C docs html
 	$(BROWSER) docs/_build/html/index.html
 
