@@ -8,7 +8,7 @@ Welcome to DMelon's documentation!
    readme
    installation
    usage
-   modules
+   generated/modules
    contributing
    contributors
    history
