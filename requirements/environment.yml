@@ -5,6 +5,8 @@ dependencies:
     - numpy
     - scipy
     - xarray
+    - cartopy
+    - matplotlib
     - dask
     - netCDF4
     - bottleneck
