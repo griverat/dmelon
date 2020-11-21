@@ -31,8 +31,9 @@ jobs:
     - name: Test with pytest
       run: |
         conda install pytest
-        $CONDA/bin/python -m pytest -v --color=yes --cov=dmelon dmelon/tests
+        $CONDA/bin/python -m pytest -v --color=yes --cov=dmelon --cov-report=xml dmelon/tests
     - name: Codecov
       uses: codecov/codecov-action@v1.0.15
       with:
+        file: ./coverage.xml
         verbose: true
