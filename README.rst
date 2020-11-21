@@ -6,8 +6,8 @@ DMelon
 .. image:: https://img.shields.io/pypi/v/dmelon.svg
         :target: https://pypi.python.org/pypi/dmelon
 
-.. image:: https://img.shields.io/travis/DangoMelon/dmelon.svg
-        :target: https://travis-ci.org/DangoMelon/dmelon
+.. image:: https://github.com/DangoMelon/dmelon/workflows/build/badge.svg
+        :target: https://github.com/DangoMelon/dmelon/actions?query=workflow%3Abuild
 
 .. image:: https://codecov.io/gh/DangoMelon/dmelon/branch/master/graph/badge.svg
         :target: https://codecov.io/gh/DangoMelon/dmelon
