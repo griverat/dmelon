@@ -13,14 +13,6 @@ Subpackages
 Submodules
 ----------
 
-dmelon.bm95 module
-------------------
-
-.. automodule:: dmelon.bm95
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 dmelon.dmelon module
 --------------------
 

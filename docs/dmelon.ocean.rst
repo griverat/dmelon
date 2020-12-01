@@ -4,6 +4,14 @@ dmelon.ocean package
 Submodules
 ----------
 
+dmelon.ocean.bm95 module
+------------------------
+
+.. automodule:: dmelon.ocean.bm95
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 dmelon.ocean.core module
 ------------------------
 
