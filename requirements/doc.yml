@@ -12,3 +12,4 @@ dependencies:
     - bottleneck
     - coverage
     - Sphinx
+    - eofs

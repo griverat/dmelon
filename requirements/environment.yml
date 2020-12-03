@@ -8,6 +8,7 @@ dependencies:
     - cartopy
     - matplotlib
     - dask
+    - eofs
     - netCDF4
     - bottleneck
     - conda-build
