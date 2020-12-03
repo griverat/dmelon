@@ -20,6 +20,14 @@ dmelon.ocean.core module
    :undoc-members:
    :show-inheritance:
 
+dmelon.ocean.takahashi\_enso\_2011 module
+-----------------------------------------
+
+.. automodule:: dmelon.ocean.takahashi_enso_2011
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 
