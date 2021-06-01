@@ -5,11 +5,17 @@ dependencies:
     - numpy
     - scipy
     - xarray
+    - eofs
     - cartopy
     - matplotlib
     - dask
     - netCDF4
     - bottleneck
     - coverage
-    - Sphinx
-    - eofs
+    - numpydoc
+    - sphinx
+    - sphinx-book-theme
+    - sphinx-copybutton
+    - myst-parser
+    - myst-nb
+    - sphinxcontrib-srclinks

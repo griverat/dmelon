@@ -7,9 +7,7 @@ import numpy as np
 
 def lanczos_filter_coef(Cf, M):
     hkcs = lowpass_cosine_filter_coef(Cf, M)
-    sigma = np.sin(np.pi * np.arange(1, M + 1) / M) / (
-        np.pi * np.arange(1, M + 1) / M
-    )
+    sigma = np.sin(np.pi * np.arange(1, M + 1) / M) / (np.pi * np.arange(1, M + 1) / M)
     sigma = np.insert(sigma, 0, 1)
     hkB = hkcs * sigma
     hkA = -hkB
@@ -19,9 +17,7 @@ def lanczos_filter_coef(Cf, M):
 
 
 def lowpass_cosine_filter_coef(Cf, M):
-    sig = np.sin(np.pi * np.arange(1, M + 1) * Cf) / (
-        np.pi * np.arange(1, M + 1) * Cf
-    )
+    sig = np.sin(np.pi * np.arange(1, M + 1) * Cf) / (np.pi * np.arange(1, M + 1) * Cf)
     coef = Cf * np.insert(sig, 0, 1)
     return coef
 

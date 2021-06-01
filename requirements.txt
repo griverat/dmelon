@@ -1,0 +1,6 @@
+cartopy
+dask[array]
+eofs
+matplotlib
+scipy
+xarray

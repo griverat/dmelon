@@ -1,5 +1,13 @@
+[build-system]
+requires = ["setuptools>=42", "wheel", "setuptools_scm[toml]>=3.4"]
+build-backend = "setuptools.build_meta"
 
-[tool.black]
-line-length = 79
-target-version = ["py34", "py35", "py36", "py37", "py38"]
+[tool.isort]
+known_third_party = ["cartopy", "eofs", "numpy", "pytest", "scipy", "setuptools", "xarray"]
 
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = " -v -n auto"
+testpaths = [
+    "tests",
+]

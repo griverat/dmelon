@@ -4,6 +4,9 @@ import numpy as np
 
 
 def edof(N, window, overlap):
+    """
+    Function to compute the effective degrees of freedom
+    """
     window = window / np.linalg.norm(window)
     nskip = window.size - overlap
     nseg = np.ceil(N / nskip) + 1

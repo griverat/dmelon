@@ -3,6 +3,7 @@
 import numpy as np
 import numpy.fft as fft
 import xarray as xr
+
 from scipy.ndimage import convolve1d
 from scipy.signal import stft
 
@@ -48,9 +49,7 @@ def compute_power(xdata, Nx, Nt, xres, tres, window, noverlap, psmooth=True):
     )
     dof = statistics.edof(xdata.sizes["time"], window, noverlap)
     print(f"{dof=}")
-    power = xr.DataArray(
-        power, coords=[("frequency", yax), ("wavenumber", xax)]
-    )
+    power = xr.DataArray(power, coords=[("frequency", yax), ("wavenumber", xax)])
 
     if psmooth is None:
         return power

@@ -16,26 +16,28 @@ DMelon
         :target: https://dmelon.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
-
-
-
 Personal package containing some useful stuff I tend to repeat.
 
 
-* Free software: MIT license
-* Documentation: https://dmelon.readthedocs.io.
+
+Documentation and code
+----------------------
+
+URLs for the docs and code.
+
+https://dmelon.readthedocs.io.
 
 
-Features
---------
+Get in touch
+------------
 
-* TODO
+Report bugs, suggest features or view the source code on `GitHub`_.
 
-Credits
--------
+.. _GitHub: https://github.com/DangoMelon/dmelon
 
-This package was created with Cookiecutter_ and the `pyOpenSci/cookiecutter-pyopensci`_ project template, based off `audreyr/cookiecutter-pypackage`_.
+License and copyright
+---------------------
 
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`pyOpenSci/cookiecutter-pyopensci`: https://github.com/pyOpenSci/cookiecutter-pyopensci
-.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+dmelon is licensed under the MIT License.
+
+Development occurs on GitHub at https://github.com/DangoMelon/dmelon.

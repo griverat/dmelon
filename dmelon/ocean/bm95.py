@@ -2,6 +2,7 @@
 
 import numpy as np
 import xarray as xr
+
 from scipy.special import eval_hermite, factorial
 
 
@@ -38,9 +39,7 @@ def _nantrapz(y, x=None, dx=1.0, axis=-1):
     slice1[axis] = slice(1, None)
     slice2[axis] = slice(None, -1)
     try:
-        ret = np.nansum(
-            (d * (y[tuple(slice1)] + y[tuple(slice2)]) / 2.0), axis
-        )
+        ret = np.nansum((d * (y[tuple(slice1)] + y[tuple(slice2)]) / 2.0), axis)
     except ValueError:
         # Operations didn't work, cast to ndarray
         d = np.asarray(d)
@@ -86,9 +85,7 @@ def hermite_function(n, x):
     """
     n = np.atleast_2d(n)
     x = np.atleast_2d(x)
-    coef = np.sqrt((2 ** n) * factorial(n) * np.sqrt(np.pi)) * np.exp(
-        (x ** 2) / 2
-    )
+    coef = np.sqrt((2 ** n) * factorial(n) * np.sqrt(np.pi)) * np.exp((x ** 2) / 2)
     return eval_hermite(n, x) / coef
 
 
@@ -154,10 +151,7 @@ class Projection:
 
     def projection_vector(self):
         self.b = _integrate(
-            (
-                self.sea_level.interpolate_na(dim="lon", limit=2)
-                / ((2.5 ** 2) / 9.81)
-            )
+            (self.sea_level.interpolate_na(dim="lon", limit=2) / ((2.5 ** 2) / 9.81))
             * self.R.R_h,
             dim="lat",
         )
