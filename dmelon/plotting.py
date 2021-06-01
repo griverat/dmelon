@@ -2,7 +2,9 @@
 
 import cartopy.feature as cfeature
 import numpy as np
+
 from cartopy.mpl.ticker import LatitudeFormatter, LongitudeFormatter
+
 
 HQ_BORDER = cfeature.NaturalEarthFeature(
     category="cultural",
