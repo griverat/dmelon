@@ -1,5 +1,5 @@
 cartopy
-dask[array]
+dask[complete]
 eofs
 matplotlib
 scipy
