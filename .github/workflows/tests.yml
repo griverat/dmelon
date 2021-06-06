@@ -23,7 +23,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/conda_pkgs_dir
-          key: conda-py3.9-dmelon
+          key: conda-py${{ matrix.python-version }}-dmelon
       - uses: conda-incubator/setup-miniconda@v2
         with:
           channels: conda-forge
