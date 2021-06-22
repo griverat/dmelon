@@ -5,6 +5,19 @@ build-backend = "setuptools.build_meta"
 [tool.isort]
 known_third_party = ["cartopy", "eofs", "numpy", "pytest", "scipy", "setuptools", "xarray"]
 
+[tool.interrogate]
+ignore-init-method = true
+ignore-init-module = false
+ignore-magic = false
+ignore-semiprivate = false
+ignore-private = false
+ignore-module = false
+fail-under = 95
+exclude = ["setup.py", "docs", "tests", "*_version.py"]
+verbose = 1
+quiet = false
+color = true
+
 [tool.pytest.ini_options]
 minversion = "6.0"
 addopts = " -v -n auto --cov-report term-missing --cov-report xml --cov xenso"
