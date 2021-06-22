@@ -1,11 +1,7 @@
-# -*- coding:utf-8 -*-
-
 import numpy as np
 import xarray as xr
-
 from eofs.xarray import Eof
 from scipy.ndimage import convolve1d
-
 
 # from scipy.stats import linregress
 
@@ -51,7 +47,7 @@ class ECindex:
             data,
             kernel,
             input_core_dims=[[dim], [dim]],
-            exclude_dims=set([dim]),
+            exclude_dims={dim},
             output_core_dims=[[dim]],
         )
         res[dim] = data[dim]

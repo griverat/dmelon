@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Top-level package for DMelon.
 """
@@ -10,6 +9,5 @@ except ImportError:
 
 
 from . import ocean, spectral, statistics
-
 
 __all__ = ["ocean", "spectral", "statistics"]

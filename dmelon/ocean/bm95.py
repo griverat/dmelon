@@ -1,8 +1,5 @@
-# -*- coding:utf-8 -*-
-
 import numpy as np
 import xarray as xr
-
 from scipy.special import eval_hermite, factorial
 
 
@@ -61,7 +58,10 @@ def _integrate(xrobj, dim):
 
 def _minv(xrobj):
     return xr.apply_ufunc(
-        np.linalg.inv, xrobj, dask="parallelized", output_dtypes=[np.float]
+        np.linalg.inv,
+        xrobj,
+        dask="parallelized",
+        output_dtypes=[np.float],
     )
 
 
@@ -165,7 +165,10 @@ class Projection:
 
     def decomposed_sea_level(self):
         self.h = (self.r * self.R.R_h).drop(["scaled_lat"]).transpose(
-            "hpoly", "time", "lat", "lon"
+            "hpoly",
+            "time",
+            "lat",
+            "lon",
         ) * ((2.5 ** 2) / 9.81)
         self.h.name = "wave_amp"
         return self.h

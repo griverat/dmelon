@@ -1,6 +1,5 @@
 from setuptools import setup
 
-
 # CHANGE PKG NAME HERE
 pkg_name = "dmelon"
 

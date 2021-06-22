@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Main module template with example functions."""
 
 
