@@ -1,9 +1,16 @@
+"""
+Lanczos filter port from MATLAB
+"""
+
 import math
 
 import numpy as np
 
 
 def lanczos_filter_coef(Cf, M):
+    """
+    Compute the filter coefficients
+    """
     hkcs = lowpass_cosine_filter_coef(Cf, M)
     sigma = np.sin(np.pi * np.arange(1, M + 1) / M) / (np.pi * np.arange(1, M + 1) / M)
     sigma = np.insert(sigma, 0, 1)
@@ -15,12 +22,18 @@ def lanczos_filter_coef(Cf, M):
 
 
 def lowpass_cosine_filter_coef(Cf, M):
+    """
+    Compute the lowpass coeficients using the cut frequency Cf
+    """
     sig = np.sin(np.pi * np.arange(1, M + 1) * Cf) / (np.pi * np.arange(1, M + 1) * Cf)
     coef = Cf * np.insert(sig, 0, 1)
     return coef
 
 
 def spectral_window(coef, N):
+    """
+    Get the spectral window from a series of coefficients
+    """
     Ff = np.atleast_2d(np.arange(0, 1 + 1e-9, 2 / N)).T
     window = coef[0] + 2 * np.sum(
         np.atleast_2d(coef[1:])
@@ -31,6 +44,9 @@ def spectral_window(coef, N):
 
 
 def spectral_filtering(x, window):
+    """
+    Spectral filtering of series x with the specified windows
+    """
     Nx = len(x)
     Cx = np.fft.fft(x)
     Cx = Cx[: (math.floor(Nx / 2)) + 1]
@@ -42,6 +58,9 @@ def spectral_filtering(x, window):
 
 
 def lanczosfilter(X, Cf, dT=1, M=100, kind="low", *args):
+    """
+    Core function that filters the signal in either low or high pass
+    """
     if np.isnan(X).all():
         return np.full_like(X, np.nan, dtype=np.float)
     kind_val = {"high": 1, "low": 0}

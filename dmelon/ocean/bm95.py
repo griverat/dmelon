@@ -1,9 +1,15 @@
+"""
+Python implementation of the Boulanger & Menkes 1995 paper
+"""
 import numpy as np
 import xarray as xr
 from scipy.special import eval_hermite, factorial
 
 
 def _scale_lats(lats, c=2.5, return_scales=False):
+    """
+    Scale latitutes using the time and space scale factors
+    """
     e_r = 6.37122e6
     omega = 7.2921159e-5
     beta = 2 * omega * np.cos(lats * np.pi / 180) / e_r
@@ -17,6 +23,9 @@ def _scale_lats(lats, c=2.5, return_scales=False):
 
 
 def _nantrapz(y, x=None, dx=1.0, axis=-1):
+    """
+    Trapezoidal method of integration from numpy with nan support
+    """
     y = np.asanyarray(y)
     if x is None:
         d = dx
@@ -46,6 +55,9 @@ def _nantrapz(y, x=None, dx=1.0, axis=-1):
 
 
 def _integrate(xrobj, dim):
+    """
+    Trapezoidal integration with xarray data structures
+    """
     return xr.apply_ufunc(
         _nantrapz,
         xrobj,
@@ -57,6 +69,9 @@ def _integrate(xrobj, dim):
 
 
 def _minv(xrobj):
+    """
+    Inverse matrix operation for xarray data structures
+    """
     return xr.apply_ufunc(
         np.linalg.inv,
         xrobj,
@@ -66,6 +81,9 @@ def _minv(xrobj):
 
 
 def _build_A(Rh):
+    """
+    Build the A matrix of the sea level decomposition method
+    """
     Rh = Rh[..., np.newaxis]
     A = np.trapz(Rh * Rh.T, dx=_scale_lats(0.25), axis=1)
 
@@ -150,6 +168,9 @@ class Projection:
         self.A_inv = _minv(self.A)
 
     def projection_vector(self):
+        """
+        Build the projection vector
+        """
         self.b = _integrate(
             (self.sea_level.interpolate_na(dim="lon", limit=2) / ((2.5 ** 2) / 9.81))
             * self.R.R_h,
@@ -159,11 +180,17 @@ class Projection:
         return self.b
 
     def wave_coefficient_vector(self):
+        """
+        Build the wave coefficient vector
+        """
         self.r = xr.dot(self.A_inv, self.b).rename({"_hpoly": "hpoly"})
         self.r.name = "wave_coefficient_vector"
         return self.r
 
     def decomposed_sea_level(self):
+        """
+        Decompose the sea level
+        """
         self.h = (self.r * self.R.R_h).drop(["scaled_lat"]).transpose(
             "hpoly",
             "time",

@@ -1,3 +1,6 @@
+"""
+Module that contains algorithms mostly using the power spectra
+"""
 import numpy as np
 import numpy.fft as fft
 import xarray as xr
@@ -17,6 +20,9 @@ def get_dispersion(
     nfft=None,
     **stft_kwargs,
 ):
+    """
+    Get the dispersion graph of series of maps
+    """
     _fft = fft.fft(data, n=Nx)
     nsegs, _fft = stft(
         _fft, axis=0, nperseg=Nt, window=window, nfft=nfft, **stft_kwargs
@@ -35,6 +41,9 @@ def get_dispersion(
 
 
 def compute_power(xdata, Nx, Nt, xres, tres, window, noverlap, psmooth=True):
+    """
+    Filter the power spectra in the wavenumber-frequency space
+    """
     power, xax, yax = get_dispersion(
         xdata,
         Nx,

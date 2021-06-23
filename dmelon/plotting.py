@@ -1,3 +1,7 @@
+"""
+Plotting module that contains most boilerplate code
+I use for my plots
+"""
 import cartopy.feature as cfeature
 import numpy as np
 from cartopy.mpl.ticker import LatitudeFormatter, LongitudeFormatter
@@ -18,6 +22,9 @@ def format_latlon(
     lon_step=20,
     lat_step=10,
 ):
+    """
+    Format geoaxes nicely
+    """
     (ilon, flon, ilat, flat) = latlon_bnds
 
     lon_formatter = LongitudeFormatter()

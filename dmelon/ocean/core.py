@@ -1,3 +1,6 @@
+"""
+General functions used specifically in ocean data analysis
+"""
 import numpy as np
 
 
@@ -8,6 +11,9 @@ class DispersionRelation:
 
     @staticmethod
     def low_freq(m):
+        """
+        Compute the scaled wavenumber and frequency for the mode m
+        """
         BETA = 2.29e-11
         C = 2.7
         CONST1 = (BETA * C) ** (1 / 2)
