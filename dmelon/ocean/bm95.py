@@ -54,49 +54,6 @@ def _nantrapz(y, x=None, dx=1.0, axis=-1):
     return ret
 
 
-def _integrate(xrobj, dim):
-    """
-    Trapezoidal integration with xarray data structures
-    """
-    return xr.apply_ufunc(
-        _nantrapz,
-        xrobj,
-        input_core_dims=[[dim]],
-        kwargs={"axis": -1, "dx": _scale_lats(0.25)},
-        dask="parallelized",
-        output_dtypes=[np.float],
-    )
-
-
-def _minv(xrobj):
-    """
-    Inverse matrix operation for xarray data structures
-    """
-    return xr.apply_ufunc(
-        np.linalg.inv,
-        xrobj,
-        dask="parallelized",
-        output_dtypes=[np.float],
-    )
-
-
-def _build_A(Rh):
-    """
-    Build the A matrix of the sea level decomposition method
-    """
-    Rh = Rh[..., np.newaxis]
-    A = np.trapz(Rh * Rh.T, dx=_scale_lats(0.25), axis=1)
-
-    A = xr.DataArray(
-        A,
-        coords=[
-            ("hpoly", np.arange(A.shape[0])),
-            ("_hpoly", np.arange(A.shape[0])),
-        ],
-    )
-    return A
-
-
 def hermite_function(n, x):
     """
     Evaluates the hermite function of order n at a point x
@@ -164,14 +121,57 @@ class Projection:
         """
         self.sea_level = sea_level
         self.R = meridional_structures(nmodes, self.sea_level.lat)
-        self.A = _build_A(self.R.R_h.data)
-        self.A_inv = _minv(self.A)
+        self.A = self._build_A(self.R.R_h.data)
+        self.A_inv = self._minv(self.A)
+
+    @staticmethod
+    def _minv(xrobj):
+        """
+        Inverse matrix operation for xarray data structures
+        """
+        return xr.apply_ufunc(
+            np.linalg.inv,
+            xrobj,
+            dask="parallelized",
+            output_dtypes=[np.float],
+        )
+
+    @staticmethod
+    def _build_A(Rh):
+        """
+        Build the A matrix of the sea level decomposition method
+        """
+        Rh = Rh[..., np.newaxis]
+        A = np.trapz(Rh * Rh.T, dx=_scale_lats(0.25), axis=1)
+
+        A = xr.DataArray(
+            A,
+            coords=[
+                ("hpoly", np.arange(A.shape[0])),
+                ("_hpoly", np.arange(A.shape[0])),
+            ],
+        )
+        return A
+
+    @staticmethod
+    def _integrate(xrobj, dim):
+        """
+        Trapezoidal integration with xarray data structures
+        """
+        return xr.apply_ufunc(
+            _nantrapz,
+            xrobj,
+            input_core_dims=[[dim]],
+            kwargs={"axis": -1, "dx": _scale_lats(0.25)},
+            dask="parallelized",
+            output_dtypes=[np.float],
+        )
 
     def projection_vector(self):
         """
         Build the projection vector
         """
-        self.b = _integrate(
+        self.b = self._integrate(
             (self.sea_level.interpolate_na(dim="lon", limit=2) / ((2.5 ** 2) / 9.81))
             * self.R.R_h,
             dim="lat",
