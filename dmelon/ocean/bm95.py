@@ -8,7 +8,12 @@ from scipy.special import eval_hermite, factorial
 
 def _scale_lats(lats, c=2.5, return_scales=False):
     """
-    Scale latitutes using the time and space scale factors
+    Nondimensionalze latitutes using the following scales:
+
+    .. math::
+        L = (c/\beta)^(1/2) \\
+        T = 1/(\beta c)^(1/2)
+
     """
     e_r = 6.37122e6
     omega = 7.2921159e-5
@@ -169,7 +174,7 @@ class Projection:
 
     def projection_vector(self):
         """
-        Build the projection vector
+        Build the projection vector `b`
         """
         self.b = self._integrate(
             (self.sea_level.interpolate_na(dim="lon", limit=2) / ((2.5 ** 2) / 9.81))
@@ -181,7 +186,7 @@ class Projection:
 
     def wave_coefficient_vector(self):
         """
-        Build the wave coefficient vector
+        Build the wave coefficient vector `r`
         """
         self.r = xr.dot(self.A_inv, self.b).rename({"_hpoly": "hpoly"})
         self.r.name = "wave_coefficient_vector"
