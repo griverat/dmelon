@@ -128,6 +128,8 @@ class Projection:
         self.R = meridional_structures(nmodes, self.sea_level.lat)
         self.A = self._build_A(self.R.R_h.data)
         self.A_inv = self._minv(self.A)
+        self.b = self._compute_projection_vector()
+        self.r = self._compute_wave_coefficient_vector()
 
     @staticmethod
     def _minv(xrobj):
@@ -172,25 +174,48 @@ class Projection:
             output_dtypes=[np.float],
         )
 
-    def projection_vector(self):
+    def _compute_projection_vector(self):
         """
         Build the projection vector `b`
         """
-        self.b = self._integrate(
+        b = self._integrate(
             (self.sea_level.interpolate_na(dim="lon", limit=2) / ((2.5 ** 2) / 9.81))
             * self.R.R_h,
             dim="lat",
         )
-        self.b.name = "projection_vector"
-        return self.b
+        b.name = "projection_vector"
+        return b
 
-    def wave_coefficient_vector(self):
+    def _compute_wave_coefficient_vector(self):
         """
         Build the wave coefficient vector `r`
         """
-        self.r = xr.dot(self.A_inv, self.b).rename({"_hpoly": "hpoly"})
-        self.r.name = "wave_coefficient_vector"
+        r = xr.dot(self.A_inv, self.b).rename({"_hpoly": "hpoly"})
+        r.name = "wave_coefficient_vector"
+        return r
+
+    @property
+    def projection_vector(self):
+        """
+        Return the computed projection vector `b`
+        """
+        return self.b
+
+    @property
+    def wave_coefficient_vector(self):
+        """
+        Return the computed wave coefficient vector `r`.
+        This variable represents the weights of the corresponding
+        meridional structure present in the original sea level signal
+        """
         return self.r
+
+    @property
+    def meridional_structures(self):
+        """
+        Return the meridional structures used for the decomposition
+        """
+        return self.R
 
     def decomposed_sea_level(self):
         """
