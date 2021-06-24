@@ -6,7 +6,7 @@ import xarray as xr
 from scipy.special import eval_hermite, factorial
 
 
-def _scale_lats(lats, c=2.5, return_scales=False):
+def scale_lats(lats, c=2.5, return_scales=False):
     """
     Nondimensionalze latitutes using the following scales:
 
@@ -81,7 +81,7 @@ def meridional_structures(n, lats):
     lats : array_like
         Array of latitudes
     """
-    sclats = _scale_lats(lats)
+    sclats = scale_lats(lats)
     R = np.empty((2, n) + sclats.shape)
     R_0 = np.sqrt(1 / 2) * hermite_function(0, sclats)
     R[:, 0, :] = np.vstack((R_0, R_0))
@@ -147,7 +147,7 @@ class Projection:
         Build the A matrix of the sea level decomposition method
         """
         Rh = Rh[..., np.newaxis]
-        A = np.trapz(Rh * Rh.T, dx=_scale_lats(0.25), axis=1)
+        A = np.trapz(Rh * Rh.T, dx=scale_lats(0.25), axis=1)
 
         A = xr.DataArray(
             A,
@@ -167,7 +167,7 @@ class Projection:
             _nantrapz,
             xrobj,
             input_core_dims=[[dim]],
-            kwargs={"axis": -1, "dx": _scale_lats(0.25)},
+            kwargs={"axis": -1, "dx": scale_lats(0.25)},
             dask="parallelized",
             output_dtypes=[np.float],
         )
