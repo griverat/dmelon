@@ -54,7 +54,7 @@ repos:
     args: [--ignore-missing-imports]
 
 - repo: https://github.com/asottile/pyupgrade
-  rev: v2.20.0
+  rev: v2.21.0
   hooks:
     - id: pyupgrade
       args:
