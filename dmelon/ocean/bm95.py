@@ -130,6 +130,7 @@ class Projection:
         self.A_inv = self._minv(self.A)
         self.b = self._compute_projection_vector()
         self.r = self._compute_wave_coefficient_vector()
+        self.h = None
 
     @staticmethod
     def _minv(xrobj):
@@ -217,15 +218,17 @@ class Projection:
         """
         return self.R
 
+    @property
     def decomposed_sea_level(self):
         """
         Decompose the sea level
         """
-        self.h = (self.r * self.R.R_h).drop(["scaled_lat"]).transpose(
-            "hpoly",
-            "time",
-            "lat",
-            "lon",
-        ) * ((2.5 ** 2) / 9.81)
-        self.h.name = "wave_amp"
+        if self.h is None:
+            self.h = (self.r * self.R.R_h).drop(["scaled_lat"]).transpose(
+                "hpoly",
+                "time",
+                "lat",
+                "lon",
+            ) * ((2.5 ** 2) / 9.81)
+            self.h.name = "wave_amp"
         return self.h
