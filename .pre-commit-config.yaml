@@ -15,7 +15,7 @@ repos:
       files: requirements-dev.txt
 
 - repo: https://github.com/econchick/interrogate
-  rev: 1.4.0
+  rev: 1.5.0
   hooks:
     - id: interrogate
       exclude: ^(docs|setup.py|tests)
@@ -34,14 +34,14 @@ repos:
       args: [--max-line-length=105]
 
 - repo: https://github.com/pycqa/isort
-  rev: 5.9.2
+  rev: 5.9.3
   hooks:
     - id: isort
       additional_dependencies: [toml]
       args: ["--profile", "black", "--filter-files"]
 
 - repo: https://github.com/psf/black
-  rev: 21.7b0
+  rev: 21.9b0
   hooks:
   - id: black
     language_version: python3
@@ -54,7 +54,7 @@ repos:
     args: [--ignore-missing-imports]
 
 - repo: https://github.com/asottile/pyupgrade
-  rev: v2.21.2
+  rev: v2.26.0
   hooks:
     - id: pyupgrade
       args:
