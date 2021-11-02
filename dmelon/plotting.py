@@ -21,14 +21,15 @@ def format_latlon(
     latlon_bnds=(-180, 180, -90, 90),
     lon_step=20,
     lat_step=10,
+    nformat="g",
 ):
     """
     Format geoaxes nicely
     """
     (ilon, flon, ilat, flat) = latlon_bnds
 
-    lon_formatter = LongitudeFormatter()
-    lat_formatter = LatitudeFormatter()
+    lon_formatter = LongitudeFormatter(number_format=nformat)
+    lat_formatter = LatitudeFormatter(number_format=nformat)
 
     ax.set_xticks(np.arange(ilon, flon, lon_step), crs=proj)
     ax.set_yticks(np.arange(ilat, flat, lat_step), crs=proj)
