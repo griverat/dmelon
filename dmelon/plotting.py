@@ -6,12 +6,22 @@ import cartopy.feature as cfeature
 import numpy as np
 from cartopy.mpl.ticker import LatitudeFormatter, LongitudeFormatter
 
-HQ_BORDER = cfeature.NaturalEarthFeature(
+SD_BORDER = cfeature.NaturalEarthFeature(
     category="cultural",
     name="admin_0_countries",
     scale="50m",
     facecolor="white",
-    edgecolor="grey",
+    edgecolor="black",
+    linewidth=1.5,
+)
+
+HQ_BORDER = cfeature.NaturalEarthFeature(
+    category="cultural",
+    name="admin_0_countries",
+    scale="10m",
+    facecolor="white",
+    edgecolor="black",
+    linewidth=1.5,
 )
 
 
