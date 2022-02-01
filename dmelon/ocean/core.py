@@ -19,5 +19,5 @@ class DispersionRelation:
         CONST1 = (BETA * C) ** (1 / 2)
         CONST2 = (BETA / C) ** (1 / 2)
         k = np.arange(-10, 10, 0.1)
-        w = -k / (2 * m + 1 + k ** 2)
+        w = -k / (2 * m + 1 + k**2)
         return w * CONST1 * 60 * 60 * 24 / (2 * np.pi), k * CONST2 * 110e3 / (2 * np.pi)
