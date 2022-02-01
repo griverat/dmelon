@@ -65,7 +65,10 @@ def hermite_function(n, x):
     """
     n = np.atleast_2d(n)
     x = np.atleast_2d(x)
-    coef = np.sqrt((2 ** n) * factorial(n) * np.sqrt(np.pi)) * np.exp((x ** 2) / 2)
+    coef = np.sqrt((2**n) * factorial(n) * np.sqrt(np.pi)) * np.exp(
+        (x**2) / 2,
+        dtype=np.float128,
+    )
     return eval_hermite(n, x) / coef
 
 
@@ -98,8 +101,8 @@ def meridional_structures(n, lats):
         },
         coords={
             "hpoly": np.arange(n),
-            "lat": lats,
-            "scaled_lat": (["lat"], sclats),
+            "lat": lats.data,
+            "scaled_lat": (["lat"], sclats.data),
         },
     )
 
@@ -180,7 +183,7 @@ class Projection:
         Build the projection vector `b`
         """
         b = self._integrate(
-            (self.sea_level.interpolate_na(dim="lon", limit=2) / ((2.5 ** 2) / 9.81))
+            (self.sea_level.interpolate_na(dim="lon", limit=2) / ((2.5**2) / 9.81))
             * self.R.R_h,
             dim="lat",
         )
@@ -229,6 +232,6 @@ class Projection:
                 "time",
                 "lat",
                 "lon",
-            ) * ((2.5 ** 2) / 9.81)
+            ) * ((2.5**2) / 9.81)
             self.h.name = "wave_amp"
         return self.h
