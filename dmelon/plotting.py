@@ -12,7 +12,7 @@ SD_BORDER = cfeature.NaturalEarthFeature(
     scale="50m",
     facecolor="white",
     edgecolor="black",
-    linewidth=1.5,
+    linewidth=1,
 )
 
 HQ_BORDER = cfeature.NaturalEarthFeature(
@@ -21,7 +21,7 @@ HQ_BORDER = cfeature.NaturalEarthFeature(
     scale="10m",
     facecolor="white",
     edgecolor="black",
-    linewidth=1.5,
+    linewidth=1,
 )
 
 
