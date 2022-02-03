@@ -4,9 +4,6 @@ Command line utility to call ARGO GDAC updates on demand
 
 import argparse
 
-import argopy
-from argopy import IndexFetcher as ArgoIndexFetcher
-
 from dmelon.ocean.argo import build_dl, launch_shell
 
 ARGO_localFTP = "/data/datos/ARGO/gdac"
@@ -16,9 +13,13 @@ def main(kind, args):
     """
     Build and run the download script for ARGO GDAC data
     """
+    import argopy
+    from argopy import IndexFetcher as ArgoIndexFetcher
+
     argopy.set_options(src="localftp", local_ftp=ARGO_localFTP)
     argopy.set_options(mode="expert")
     index_loader = ArgoIndexFetcher()
+
     if kind == "region":
         region = [
             float(args[0]),
