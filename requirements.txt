@@ -1,6 +1,7 @@
 cartopy
 dask
 eofs
+geopandas
 matplotlib
 scipy
 xarray

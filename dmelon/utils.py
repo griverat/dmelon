@@ -6,6 +6,10 @@ import json
 import os
 from typing import Optional
 
+import geopandas as gpd
+import pandas as pd
+from geopandas.tools import sjoin
+
 
 def check_folder(base_path: str, name: Optional[str] = None):
     """
@@ -26,3 +30,22 @@ def load_json(path: str):
     with open(path) as f:
         content = json.load(f)
     return content
+
+
+def findPointsInPolys(
+    pandas_df: pd.DataFrame,
+    shape_df: gpd.GeoDataFrame,
+    crs: str = "EPSG:4326",
+):
+    """
+    Filter DataFrame by their spatial location within a
+    GeoDataFrame
+    """
+    argo_geodf = gpd.GeoDataFrame(
+        pandas_df,
+        geometry=gpd.points_from_xy(pandas_df.longitude, pandas_df.latitude, crs=crs),
+    )
+
+    # Make spatial join to filer out values outside the shapefile
+    pointInPolys = sjoin(argo_geodf, shape_df, op="within", how="inner")
+    return pointInPolys
