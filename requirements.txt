@@ -1,3 +1,4 @@
+argopy
 cartopy
 dask
 eofs
