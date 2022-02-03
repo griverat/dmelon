@@ -23,7 +23,7 @@ def build_dl(argo_df: pd.DataFrame, ARGO_localFTP: Optional[str] = None):
     if ARGO_localFTP is None:
         ARGO_localFTP = "/data/datos/ARGO/gdac"
 
-    cmd_template = "screen -dmS auto_{}_{}_{:%Y%m%d_%Hh} rsync -avvzhP --delete-during vdmzrs.ifremer.fr::argo/{} {}"
+    cmd_template = "screen -dmS auto_{}_{}_{:%Y%m%d_%Hh} rsync -avvzhP --delete-during --timeout=60 vdmzrs.ifremer.fr::argo/{} {}"
 
     today = pd.Timestamp.now(tz="America/Lima")
     dl_list = [
