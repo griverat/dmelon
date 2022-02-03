@@ -47,5 +47,5 @@ def findPointsInPolys(
     )
 
     # Make spatial join to filer out values outside the shapefile
-    pointInPolys = sjoin(argo_geodf, shape_df, op="within", how="inner")
+    pointInPolys = sjoin(argo_geodf, shape_df, predicate="within", how="inner")
     return pointInPolys
