@@ -9,6 +9,7 @@ dependencies:
     - eofs
     - cartopy
     - matplotlib
+    - geopandas
     - dask
     - netCDF4
     - bottleneck
