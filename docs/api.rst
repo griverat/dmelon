@@ -9,12 +9,20 @@ Ocean
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: dmelon.ocean.bm95
+
+ARGO
+~~~~
+
+.. automodule:: dmelon.argo
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: dmelon.ocean.takahashi_enso_2011
+
+BM95
+~~~~
+
+.. automodule:: dmelon.ocean.bm95
    :members:
    :undoc-members:
    :show-inheritance:
@@ -28,12 +36,26 @@ Spectral
    :undoc-members:
    :show-inheritance:
 
+
+Filters
+~~~~~~~
 .. automodule:: dmelon.spectral.filters
    :members:
    :undoc-members:
    :show-inheritance:
 
+
+Power
+~~~~~
 .. automodule:: dmelon.spectral.power
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Wavelet
+~~~~~
+.. automodule:: dmelon.spectral.wavelet
    :members:
    :undoc-members:
    :show-inheritance:
@@ -52,6 +74,15 @@ Plotting
 --------
 
 .. automodule:: dmelon.plotting
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Utils
+--------
+
+.. automodule:: dmelon.utils
    :members:
    :undoc-members:
    :show-inheritance:

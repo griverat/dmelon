@@ -25,7 +25,7 @@ import dmelon  # isort:skip
 # -- Project information -----------------------------------------------------
 
 project = "dmelon"
-copyright = "2021, Gerardo A. Rivera"
+copyright = "2022, Gerardo A. Rivera"
 author = "Gerardo A. Rivera"
 
 # The version info for the project you're documenting, acts as replacement for
