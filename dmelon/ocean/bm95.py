@@ -8,11 +8,12 @@ from scipy.special import eval_hermite, factorial
 
 def scale_lats(lats, c=2.5, return_scales=False):
     """
-    Nondimensionalze latitutes using the following scales:
+    Nondimensionalize latitutes using the following scales:
 
     .. math::
-        L = (c/\beta)^(1/2) \\
-        T = 1/(\beta c)^(1/2)
+        L = (c/\beta)^{(1/2)} \\
+        T = 1/(\beta c)^{(1/2)}
+
 
     """
     e_r = 6.37122e6
