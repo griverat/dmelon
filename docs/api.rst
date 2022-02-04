@@ -13,7 +13,7 @@ Ocean
 ARGO
 ~~~~
 
-.. automodule:: dmelon.argo
+.. automodule:: dmelon.ocean.argo
    :members:
    :undoc-members:
    :show-inheritance:
