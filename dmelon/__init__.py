@@ -8,6 +8,6 @@ except ImportError:
     __version__ = "unknown"
 
 
-from . import ocean, spectral, statistics
+from . import ocean, plotting, spectral, statistics, utils
 
-__all__ = ["ocean", "spectral", "statistics"]
+__all__ = ["ocean", "plotting", "spectral", "statistics", "utils"]
