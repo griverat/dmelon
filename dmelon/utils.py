@@ -46,6 +46,5 @@ def findPointsInPolys(
         geometry=gpd.points_from_xy(pandas_df.longitude, pandas_df.latitude, crs=crs),
     )
 
-    # Make spatial join to filer out values outside the shapefile
-    pointInPolys = sjoin(argo_geodf, shape_df, predicate="within", how="inner")
-    return pointInPolys
+    # Return spatial join to filer out values outside the shapefile
+    return sjoin(argo_geodf, shape_df, predicate="within", how="inner")
