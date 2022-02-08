@@ -11,7 +11,7 @@ import pandas as pd
 from geopandas.tools import sjoin
 
 
-def check_folder(base_path: str, name: Optional[str] = None):
+def check_folder(base_path: str, name: Optional[str] = None) -> None:
     """
     Create a folder if it does not exists
     """
@@ -23,7 +23,7 @@ def check_folder(base_path: str, name: Optional[str] = None):
         os.makedirs(out_path)
 
 
-def load_json(path: str):
+def load_json(path: str) -> dict:
     """
     Load the contents of a json file into a python dictionary
     """
@@ -36,7 +36,7 @@ def findPointsInPolys(
     pandas_df: pd.DataFrame,
     shape_df: gpd.GeoDataFrame,
     crs: str = "EPSG:4326",
-):
+) -> gpd.GeoDataFrame:
     """
     Filter DataFrame by their spatial location within a
     GeoDataFrame
