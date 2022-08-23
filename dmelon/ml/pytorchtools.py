@@ -7,7 +7,12 @@ class EarlyStopping:
     """Early stops the training if validation loss doesn't improve after a given patience."""
 
     def __init__(
-        self, patience=7, verbose=False, delta=0, path="checkpoint.pt", trace_func=print
+        self,
+        patience=7,
+        verbose=False,
+        delta=0,
+        path="checkpoint.pt",
+        trace_func=print,
     ):
         """
         Args:
@@ -42,7 +47,7 @@ class EarlyStopping:
         elif score < self.best_score + self.delta:
             self.counter += 1
             self.trace_func(
-                f"EarlyStopping counter: {self.counter} out of {self.patience}"
+                f"EarlyStopping counter: {self.counter} out of {self.patience}",
             )
             if self.counter >= self.patience:
                 self.early_stop = True
@@ -55,7 +60,7 @@ class EarlyStopping:
         """Saves model when validation loss decrease."""
         if self.verbose:
             self.trace_func(
-                f"Validation loss decreased ({self.val_loss_min:.6f} --> {val_loss:.6f}).  Saving model ..."
+                f"Validation loss decreased ({self.val_loss_min:.6f} --> {val_loss:.6f}).  Saving model ...",
             )
         torch.save(model.state_dict(), self.path)
         self.val_loss_min = val_loss
