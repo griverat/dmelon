@@ -104,20 +104,14 @@ def replace_x_y_nominal_lat_lon(ds):
         # pick the nominal lon/lat values from the eastern
         # and southern edge, and
         eq_idx = len(ds.y) // 2
-        print(f"using equator index: {eq_idx}")
 
         nominal_x = ds.isel(y=eq_idx).lon.load()
         nominal_y = ds.lat.max("x").load()
-
-        print(f"{nominal_x=}")
-        print(f"{nominal_y=}")
 
         # interpolate nans
         # Special treatment for gaps in longitude
         nominal_x = _interp_nominal_lon(nominal_x.data)
         nominal_y = nominal_y.interpolate_na("y").data
-        print(f"{nominal_x=}")
-        print(f"{nominal_y=}")
 
         # eliminate non unique values
         # these occour e.g. in "MPI-ESM1-2-HR"
