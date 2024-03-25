@@ -1,6 +1,7 @@
 """
 Python implementation of the Boulanger & Menkes 1995 paper
 """
+
 import numpy as np
 import xarray as xr
 from scipy.special import eval_hermite, factorial

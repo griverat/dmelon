@@ -2,6 +2,7 @@
 ARGO module made for some specific usage in downloading
 data from the GDAC center using rsync and screen
 """
+
 import os
 from typing import Optional
 
