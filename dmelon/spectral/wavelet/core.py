@@ -8,7 +8,6 @@ The idea behind this adaptation is to include as many modern
 python features as possible aiming to have an xarray integration
 """
 
-
 from typing import Optional
 
 import numpy as np
@@ -209,9 +208,7 @@ def wave_signif(
         fft_theor = gws
     else:
         # [Eqn(16)]
-        fft_theor = (1 - lag1**2) / (
-            1 - 2 * lag1 * np.cos(freq * 2 * np.pi) + lag1**2
-        )
+        fft_theor = (1 - lag1**2) / (1 - 2 * lag1 * np.cos(freq * 2 * np.pi) + lag1**2)
         fft_theor = variance * fft_theor  # include time-series variance
 
     signif = fft_theor
