@@ -1,3 +1,7 @@
+"""
+Wavelet transform ported from the MATLAB code by Torrence and Compo
+"""
+
 import numpy as np
 import xarray as xr
 
@@ -5,6 +9,9 @@ from .core import wave_signif, wavelet
 
 
 def ar1nv(x):
+    """
+    Estimate the lag-1 autocorrelation of a time series
+    """
     x = x.data
     N = x.size
     x = x - x.mean()
@@ -25,6 +32,9 @@ def wt(
     AR1="auto",
     plot=True,
 ):
+    """
+    Wavelet transform of a time series
+    """
     if s0 is None:
         s0 = 2 * dt
     if AR1 == "auto":

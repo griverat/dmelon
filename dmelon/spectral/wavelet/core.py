@@ -8,7 +8,6 @@ The idea behind this adaptation is to include as many modern
 python features as possible aiming to have an xarray integration
 """
 
-
 from typing import Optional
 
 import numpy as np
@@ -21,12 +20,15 @@ def wavelet(
     dt: float,
     pad: bool = False,
     dj: float = 1 / 4,
-    s0: float = None,
-    J1: float = None,
+    s0: Optional[float] = None,
+    J1: Optional[float] = None,
     mother: str = "MORLET",
     param=-1,
     freq=None,
 ):
+    """
+    Wavelet transform of a time series
+    """
     n1 = len(Y)
 
     if s0 is None:
@@ -101,6 +103,9 @@ def wave_bases(
     scale: np.array,
     param: Optional[float] = None,
 ):
+    """
+    Compute the wavelet function as a function of Fourier frequency,
+    """
     n = len(k)
     kplus = np.array(k > 0.0, dtype=float)
     scale = scale[..., np.newaxis]
@@ -160,6 +165,9 @@ def wave_signif(
     param=None,
     gws=None,
 ):
+    """
+    Significance testing for the 1-d wavelet transform
+    """
     n1 = len(np.atleast_1d(Y))
     J1 = len(scale) - 1
     dj = np.log2(scale[1] / scale[0])
@@ -209,9 +217,7 @@ def wave_signif(
         fft_theor = gws
     else:
         # [Eqn(16)]
-        fft_theor = (1 - lag1**2) / (
-            1 - 2 * lag1 * np.cos(freq * 2 * np.pi) + lag1**2
-        )
+        fft_theor = (1 - lag1**2) / (1 - 2 * lag1 * np.cos(freq * 2 * np.pi) + lag1**2)
         fft_theor = variance * fft_theor  # include time-series variance
 
     signif = fft_theor
@@ -262,6 +268,9 @@ def wave_signif(
 
 
 def chisquare_inv(P, V):
+    """
+    Inverse of the Chi-square distribution function
+    """
 
     if (1 - P) < 1e-4:
         print("P must be < 0.9999")
@@ -287,6 +296,9 @@ def chisquare_inv(P, V):
 
 
 def chisquare_solve(XGUESS, P, V):
+    """
+    Solve for the Chi-square function
+    """
 
     PGUESS = gammainc(V / 2, V * XGUESS / 2)  # incomplete Gamma function
 

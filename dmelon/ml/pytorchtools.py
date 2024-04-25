@@ -1,4 +1,7 @@
-# Taken from https://github.com/Bjarten/early-stopping-pytorch
+"""
+Taken from https://github.com/Bjarten/early-stopping-pytorch
+"""
+
 import numpy as np
 import torch
 
@@ -38,7 +41,11 @@ class EarlyStopping:
         self.trace_func = trace_func
 
     def __call__(self, val_loss, model):
-
+        """
+        Args:
+            val_loss (float): validation loss
+            model (PyTorch model): model to save
+        """
         score = -val_loss
 
         if self.best_score is None:

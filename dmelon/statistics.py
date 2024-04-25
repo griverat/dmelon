@@ -1,6 +1,7 @@
 """
 Statistics module
 """
+
 import numpy as np
 
 

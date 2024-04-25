@@ -1,6 +1,7 @@
 """
 Module that contains algorithms mostly using the power spectra
 """
+
 import numpy as np
 import numpy.fft as fft
 import xarray as xr
@@ -25,7 +26,12 @@ def get_dispersion(
     """
     _fft = fft.fft(data, n=Nx)
     nsegs, _fft = stft(
-        _fft, axis=0, nperseg=Nt, window=window, nfft=nfft, **stft_kwargs
+        _fft,
+        axis=0,
+        nperseg=Nt,
+        window=window,
+        nfft=nfft,
+        **stft_kwargs,
     )[1:]
     _fft = fft.fftshift(_fft * window.sum())[Nt // 2 :, ...]
     _fft = np.conjugate(_fft) * _fft

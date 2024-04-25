@@ -57,6 +57,7 @@ def findPointsInPolys(
 
 
 def _interp_nominal_lon(lon_1d):
+    """Interpolate the nominal longitude values to remove nans"""
     x = np.arange(len(lon_1d))
     idx = np.isnan(lon_1d)
     # the periodicity of the coordinates should be the length of the array
