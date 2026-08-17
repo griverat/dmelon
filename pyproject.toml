@@ -20,7 +20,7 @@ color = true
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts = " -v -n auto --cov-report term-missing --cov-report xml --cov xenso"
+addopts = " -v -n auto --cov-report term-missing --cov-report xml --cov dmelon"
 testpaths = [
     "tests",
 ]
