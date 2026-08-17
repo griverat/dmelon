@@ -37,7 +37,7 @@ def format_latlon(
     """
     Format geoaxes nicely
     """
-    (ilon, flon, ilat, flat) = latlon_bnds
+    ilon, flon, ilat, flat = latlon_bnds
 
     lon_formatter = LongitudeFormatter(number_format=nformat)
     lat_formatter = LatitudeFormatter(number_format=nformat)
